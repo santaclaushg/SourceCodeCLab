@@ -1,0 +1,95 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+#define MAX 1000
+
+typedef struct Student
+{
+    char id[6];
+    char name[30];
+    float grade;
+    char level;
+
+} student;
+
+void clear_buffer(){
+    int ch;
+    while(ch = getchar() == '\n' && ch == EOF);
+}
+
+void remove_last_enter(char *s){
+    if(strlen(s) != 0){
+        if(s[strlen(s) - 1] == '\n'){
+            s[strlen(s) -1] = '\0';
+        }
+    }
+}
+
+void swap(student *s1, student *s2){
+    student tmp;
+    tmp = *s1;
+    *s1 = *s2;
+    *s2 = tmp;
+}
+
+student input_info(){
+    student s;
+    printf("ID: ");
+    clear_buffer();
+    fgets(s.id, 6, stdin);
+    remove_last_enter(s.name);
+    printf("Name: ");
+    fgets(s.name, 30, stdin);
+    remove_last_enter(s.name);
+    printf("Grade: ");
+    scanf("%f", &s.grade);
+    return s;
+}
+
+char check_level(float *grade){
+    char l;
+    if(*grade >= 9 && *grade <= 10){
+        l = 'A';
+    }
+    else if(*grade >= 8 && *grade < 9){
+        l = 'B';
+    }
+    else if(*grade >= 6.5 && *grade < 8){
+        l = 'C';
+    }
+    else{
+        l = 'D';
+    }
+    return l;
+}
+
+int main()
+{
+    long int n;
+    int i, j;
+    student s[MAX];
+    printf("Input the number of students: \n");
+    scanf("%ld", &n);
+    for(i = 0; i < n; i++){
+        s[i] = input_info();
+        s[i].level = check_level(&s[i].grade);
+    }
+
+    for(i = 0; i < n; i++){
+        for(j = 0; j < n - i - 1; j++){
+            if(s[j].grade < s[j+1].grade){
+                swap(&s[j], &s[j+1]);
+            }
+        }
+    }
+
+    printf("\n");
+    printf("%10s%10s%10s\n", "Name", "Grade", "Level");
+    for(i = 0; i < n; i++){
+        printf("%10s%10.2f%10c\n", s[i].name, s[i].grade, s[i].level);
+    }
+    return 0;
+}

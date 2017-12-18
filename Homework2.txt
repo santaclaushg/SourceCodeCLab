@@ -1,0 +1,157 @@
+- Homework 1:
+
+#include <stdio.h>
+
+
+int main()
+
+{
+
+    float a;
+
+    printf("Enter the distances in km : ");
+    scanf(" %f", &a);
+
+    printf("The distances in miles : %.2f", (a / 1.621));
+
+    return 0;
+
+}
+
+
+
+
+
+- Homework 2:
+
+
+#include <stdio.h>
+
+int main()
+
+{
+
+    float a, b, result;
+
+
+
+    printf("Enter two real number a, b : ");
+
+    scanf(" %f%f", &a, &b);
+
+
+
+    if ((a*a - b*b - a*b) == 0) {
+
+        printf("The denominator must be not equal zero !");
+
+    } else {
+
+        result = (a+b) * (a+b) * (a+b) / (a*a - b*b - a*b);
+
+        printf("\n(a+b)^3 / (a^2 -b^2) - ab = %.2f", result);
+
+
+
+        result = 1 / (a*a + b*b);
+
+        printf("\n(a-b)(a+b) / (a^2 - b^2)(a^2 + b^2) = %.2f", result);
+
+    }
+
+
+
+    return 0;
+
+}
+
+
+
+
+
+
+- Homework 3:
+
+
+#include <stdio.h>
+
+int main()
+
+{
+
+    double x, y;
+
+
+    printf("Enter two double number x, y : ");
+    scanf(" %lf%lf", &x, &y);
+
+
+
+    if (x == y) {
+
+        printf("%lf equal %lf", x, y);
+
+    } else if (x < y) {
+
+        printf("%lf less than %lf", x, y);
+
+    } else {
+
+        printf("%lf greater than %lf", x, y);
+
+    }
+
+
+
+    return 0;
+
+}
+
+
+
+
+
+- Homework 4:
+
+
+#include <stdio.h>
+
+int main()
+
+{
+
+    int numOfIpop, numOfIpad, netPayment;
+
+
+
+    printf("Enter the number of iPop you want to buy : ");
+
+    scanf(" %d", &numOfIpop);
+
+    printf("\nEnter the number of iPad you want to buy: ");
+
+    scanf(" %d", &numOfIpad);
+
+
+
+    netPayment = numOfIpop * 148 + numOfIpad * 288;
+
+
+
+    if (netPayment > 1020) {
+
+        printf("You net payment : $%.2f", (netPayment * 9.0 / 10.0));
+
+    } else {
+
+        printf("Your net payment : $%d ", netPayment);
+
+    }
+
+
+
+
+
+    return 0;
+
+}

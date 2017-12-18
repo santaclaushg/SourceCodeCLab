@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main()
+{
+    int x, i = 1, num, count = 0, c, d = 0, a;
+    float grade, av, sum = 0;
+    long fac = 1;
+    do{
+    printf("HOMEWORK 7\n");
+    printf("1. Calculate n!\n");
+    printf("2. Average grade\n");
+    printf("3. Replace multiple blank characters\n");
+    printf("4. Replace tab and \\ \n");
+    printf("5. Exit application\n\n");
+    printf("Enter a number (1-5): \n");
+    scanf("%d", &x);
+    switch (x){
+        case 1: {
+            printf("Enter a natural number n: ");
+            scanf("%d", &num);
+            while(i <= num){
+                fac = fac * i;
+                i++;
+            }
+            printf("n! = %ld", fac);
+            break;
+                }
+
+        case 2: {
+            printf("Enter grades and press '-1' to end: ");
+            scanf("%f", &grade);
+            while(grade > 0.0)
+            {
+                sum += grade;
+                count++;
+                scanf("%f", &grade);
+            }
+            av = sum/count;
+            printf("The average grade is: %.2f", av);
+            break;
+                }
+        case 3: {
+            while ((c = getchar()) != EOF){
+                if (c == ' '){
+                    while ((d = getchar()) == ' ');
+                        putchar(c);
+                        putchar(d);
+                }
+                else{
+                    putchar(c);
+                }
+            }
+            break;
+            }
+        case 4: {
+            while ((a = getchar()) != EOF){
+                if (a == '\t'){
+                    putchar('\\');
+                    putchar('t');
+                }
+                else if (a == '\\'){
+                    putchar('\\');
+                    putchar('\\');
+                }
+                else{
+                    putchar(a);
+                }
+            }
+            break;
+                }
+        case 5: break;
+        default: printf("Wrong!");
+    }
+    printf("\n");
+    }
+
+    while (x != 5);
+
+    return 0;
+}

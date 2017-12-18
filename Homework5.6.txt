@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    char toc;
+    int hour, price1, price2, peh, x;
+    printf("Enter type of car\(C for car, B for bus and T for truck\): ");
+    scanf("%c", &toc);
+    printf("Enter the number of hours spent in the car park: ");
+    scanf("%d", &hour);
+    if(toc == "C"){
+        printf("VEHICLE TYPE: CAR");
+        if(hour <= 2){
+            peh = 0.7;
+            price1 = peh * hour;
+        }
+        else{
+            x = hour - 2;
+            peh = 0.7;
+            price1 = peh * 2;
+            price2 = 2.5 * x;
+        }
+    }
+    if(toc == "B"){
+        printf("VEHICLE TYPE: BUS");
+        if(hour <= 2){
+            peh = 1.5;
+            price1 = peh * hour;
+        }
+        else{
+            peh = 1.5;
+            x = hour - 2;
+            price1 = peh * hour;
+            price2 = 2.0 * x;
+        }
+    }
+    if(toc == "T"){
+        printf("VEHICLE TYPE: TRUCK");
+        if(hour <= 2){
+            peh = 2.5;
+            price1 = peh * hour;
+        }
+        else{
+            x = hour - 2;
+            price1 = peh * 2;
+            price2 = 3.25 * x;
+        }
+    }
+    printf("Parking Fee\n");
+    printf("VEHICLE TYPE: %c\n", toc);
+    printf("TIME: %d\n", hour);
+    printf("REGULAR FEE: %d * peh = %d\n",peh, price1);
+    printf("OVERTIME   : %d * 2.5 = %d\n", x, price2);
+    printf("TOTAL      : %d\n", price1 + price2);
+    printf("Thank you.\n");
+
+    return 0;
+}

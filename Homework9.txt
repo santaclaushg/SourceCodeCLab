@@ -1,0 +1,221 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 100
+
+
+int hw1()
+{
+    int array[MAX], i, sum, min;
+    srand(time(NULL));
+    min = array[0];
+    for(i = 0; i < MAX; i++){
+        array[i] = rand() % 100;
+        if(array[i] % 2 == 1){
+            sum += array[i];
+        }
+        if(array[i] < min){
+            min = array[i];
+        }
+
+    }
+    printf("The sum of the odd number in the array is: %d\n", sum);
+    printf("The minimum value is: %d\n", min);
+
+    return 0;
+}
+
+
+int check_array(int array1[], int size1, int array2[], int size2){
+    int i, size;
+    if(size1 == size2){
+        size = size1;
+        for(i = 0; i < size; i++){
+            if(array1[i] != array2[i]){
+                return 0;
+                break;
+            }
+            return 1;
+        }
+    }
+    else{
+        return 0;
+    }
+
+}
+
+int hw2()
+{
+    int size1, size2, count1, count2;
+
+    printf("Enter the size of array 1: \n");
+    scanf("%d", &size1);
+    int array1[size1];
+    printf("Enter each value of array1: \n");
+    for(count1 = 0; count1 < size1; count1++){
+        scanf("%d", &array1[count1]);
+    }
+
+    printf("Enter the size of array 2: \n");
+    scanf("%d", &size2);
+    int array2[size2];
+    printf("Enter each value of array2: \n");
+    for(count2 = 0; count2 < size2; count2++){
+        scanf("%d", &array2[count2]);
+    }
+
+    check_array(array1, size1, array2, size2);
+    if(check_array(array1, size1, array2, size2) == 1){
+        printf("Two arrays are equal!\n");
+    }
+    else{
+        printf("Two arrays are not equal!\n");
+    }
+
+    return 0;
+}
+
+
+int sort_int(int array[], int size){
+
+    int i, j, tmp;
+    for(i = 0; i < size; i++){
+        for(j = i + 1; j < size; j++){
+            if(array[i] < array[j]){
+                tmp = array[i];
+                array[i] = array[j];
+                array[j] = tmp;
+            }
+        }
+    }
+    return 0;
+}
+
+int sort_odd_e(int array[], int size){
+
+    int i, j, tmp;
+    for(i = 0; i < size; i++){
+        if(array[i] % 2 != 0){
+            for(j = i + 1; j < size; j++){
+                if(array[j] % 2 != 0){
+                    if(array[i] < array[j]){
+                        tmp = array[i];
+                        array[i] = array[j];
+                        array[j] = tmp;
+                    }
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+int hw3()
+{
+    int array[10], i, flag;
+    printf("Enter value of 10 elements in an array: \n");
+    for(i = 0; i < 10; i++){
+        scanf("%d", &array[i]);
+    }
+    printf("Enter '1' to sort the integer elements in the array by descended order.\n");
+    printf("Enter '2' to sort the odd elements by descended order.\n");
+    scanf("%d", &flag);
+    if(flag == 1){
+        sort_int(array, 10);
+        printf("The array that is arranged by descended order is: \n");
+        for(i = 0; i < 10; i++){
+            printf("%d\n", array[i]);
+        }
+    }
+    if(flag == 2){
+        sort_odd_e(array, 10);
+        printf("The array that is sorted odd elements by descended order is: \n");
+        for(i = 0; i < 10; i++){
+            printf("%d\n", array[i]);
+        }
+    }
+    return 0;
+}
+
+
+int hw4()
+{
+    int i, j, k, A[3][3], B[3][3], C[3][3];
+    for(i = 0; i < 3; i++){
+        for(j = 0; j < 3; j++){
+            printf("Enter A[%d][%d]: ", i, j);
+            scanf("%d", &A[i][j]);
+        }
+    }
+    for(i = 0; i < 3; i++){
+        for(j = 0; j < 3; j++){
+            printf("Enter B[%d][%d]: ", i, j);
+            scanf("%d", &B[i][j]);
+        }
+    }
+    for(i = 0; i < 3; i++){
+        for(k = 0; k < 3; k++){
+            C[i][k] = 0;
+            for(j = 0; j < 3; j++){
+                C[i][k] += A[i][j] * B[j][k];
+            }
+        }
+    }
+    for(i = 0; i < 3; i++){
+        for(j = 0; j < 3; j++){
+            printf("The matrix C is: \n");
+            printf("C[%d][%d] = %d\n", i, j, C[i][j]);
+        }
+    }
+    printf("Hello world!\n");
+    return 0;
+}
+
+
+int hw5()
+{
+    int n, i ;
+    printf("Enter n where n is the number of element in an array: ");
+    scanf("%d", &n);
+    int A[n];
+    for(i = 0; i < n; i++){
+        printf("A[%d] = ", i);
+        scanf("%d", &A[i]);
+    }
+    for(i = 0; i < n; i++){
+        if(A[i] == A[n - 1 - i]){
+            continue;
+        }
+        else{
+            printf("The array is not symmetric.");
+            goto end_;
+        }
+    }
+     printf("The array is symmetric.\n");
+   end_: return 0;
+}
+
+int main()
+{
+    int i;
+    do{
+        printf("HOMEWORK 9!\n");
+        printf("1. Find the sum of the odd number in the array. Find the minimum value.\n");
+        printf("2. Check th euality of two arrays\n");
+        printf("3. Sorts the integers element in an array by the decreasing order & sort the odd elements in the decreasing order.\n");
+        printf("4. Calculate the multiplication matrix C of matrix A and B with the size of 3 x 3\n");
+        printf("5. Input an array with the number of element n asked from user. Check to see whether the array is symmetric.\n");
+        printf("Write a function that reverse the array content. Use this function in a program that asks user to enter a list of floatting numbers. Then reverse all these numbers without creating another array.\n");
+        printf("Enter a number (1-5): ");
+        scanf("%d", &i);
+        switch(i){
+            case 1: hw1(); break;
+            case 2: hw2(); break;
+            case 3: hw3(); break;
+            case 4: hw4(); break;
+            case 5: hw5(); break;
+
+        }
+    }while(i != -1);
+    return 0;
+}
